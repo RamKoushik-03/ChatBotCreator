@@ -3,14 +3,13 @@ from flask_cors import CORS
 from transformers import pipeline
 import os
 
-# Initialize the Flask app
-app = Flask(__name__)
-CORS(app)  # Enable cross-origin requests
 
-# Initialize the QA pipeline
+app = Flask(__name__)
+CORS(app)  
+
 qa_pipeline = pipeline("question-answering", model="deepset/roberta-base-squad2")
 
-# Path to the text file to store business info
+
 BUSINESS_INFO_FILE = "business_info.txt"
 
 def read_business_info():
@@ -42,7 +41,7 @@ def submit_info():
         if not business_info:
             return jsonify({'error': 'Business information cannot be empty.'}), 400
 
-        # Write to text file
+        
         write_business_info(business_info)
         print(f"Business info saved: {business_info}")
         return jsonify({'message': 'Business information saved successfully!'}), 200
@@ -64,7 +63,7 @@ def chat():
         if not question:
             return jsonify({'error': 'Question is required.'}), 400
 
-        # Read from text file
+        
         business_info = read_business_info()
         if not business_info:
             return jsonify({'error': 'Business information not found. Please submit it first.'}), 400
@@ -72,7 +71,7 @@ def chat():
         print(f"Question received: {question}")
         print(f"Using business info: {business_info}")
 
-        # Use the QA pipeline
+        
         result = qa_pipeline(question=question, context=business_info)
         confidence_threshold = 0.1
         if result['score'] < confidence_threshold:

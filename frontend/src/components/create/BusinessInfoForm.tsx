@@ -44,12 +44,6 @@ const BusinessInfoForm = () => {
 
       console.log('Submit Info Response:', submitResponse.data);
 
-      // const testQuestion = 'What is this business about?';
-      // const chatResponse = await axios.post(`${API_BASE_URL}/submit-info`, {
-      //   question: testQuestion,
-      // });
-
-      // console.log('Chat Response:', chatResponse.data);
       toast({
         title: 'Chatbot created successfully!',
         description: 'Your chatbot is ready.',

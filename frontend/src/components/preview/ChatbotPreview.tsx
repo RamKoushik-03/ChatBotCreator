@@ -17,8 +17,7 @@ interface Message {
 }
 
 const embedCode = `
-<script src="https://botbuilder.example/js/chatbot.js" async></script>
-<div id="chatbot"></div>
+<script src="chat.js"></script>
 `;
 
 
@@ -228,10 +227,10 @@ const ChatbotPreview = () => {
                     </p>
                     
                     <div className="flex">
-                      <Input defaultValue="https://botbuilder.example/chat/12345" readOnly />
+                      <Input defaultValue="chat.js" readOnly />
                       <Button 
                         onClick={() => {
-                          navigator.clipboard.writeText("https://botbuilder.example/chat/12345");
+                          navigator.clipboard.writeText("chat.js");
                           toast({ title: "Link copied to clipboard" });
                         }} 
                         className="ml-2"
